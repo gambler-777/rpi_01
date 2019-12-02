@@ -18,16 +18,17 @@ public:
     explicit Model_Main(QWidget *parent = nullptr);
     ~Model_Main();
 
+
 private slots:
     void on_pushu_clicked();
-
-    void on_checkBox_3_stateChanged(int arg1);
 
     void on_ShotButton_clicked();
 
     void on_checkBox_Preview_stateChanged(int arg1);
 
     void on_pushButton_py_clicked();
+
+//    void on_checkBox_auto_stateChanged(int arg1);
 
 private:
     Ui::Model_Main *ui;
@@ -58,7 +59,7 @@ private:
 
     QString ShotParams; //Nabor vseh parametrov sjomki
 
-    void ShotParamStringCreate;
+   void ShotParamStringCreate();
 
 };
 

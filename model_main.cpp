@@ -80,11 +80,13 @@ Model_Main::~Model_Main()
 
 void Model_Main::on_pushu_clicked() //button generating string with shot parameters
 {
+//    ShotParamStringCreate();
+
     ImgName = ui->LineFileName->text();
     Path = ui->LinePath->text();
     WBStr = " -awb "+ui->comboBox_WB->currentText();
 
-    if(ui->checkBox_3->isChecked())
+    if(ui->checkBox_auto->isChecked())
     {
         ISOStr ="";
         SSStr = "";
@@ -117,20 +119,6 @@ void Model_Main::on_pushu_clicked() //button generating string with shot paramet
     ui->textEdit->setText(ShotParams);
 }
 
-
-void Model_Main::on_checkBox_3_stateChanged(int arg1)
-{
-    if(arg1){
-    ui->comboBox_SS->setEnabled(0);
-    ui->comboBox_ISO->setEnabled(0);
-    }
-    else{
-    ui->comboBox_SS->setEnabled(1);
-    ui->comboBox_ISO->setEnabled(1);
-    }
-    return;
-}
-
 void Model_Main::on_ShotButton_clicked()
 {
     system(qPrintable(ShotParams));
@@ -156,5 +144,11 @@ void Model_Main::on_pushButton_py_clicked()
 }
 
 void Model_Main::ShotParamStringCreate()
-{}
+{
 
+}
+
+//void Model_Main::on_checkBox_auto_stateChanged(int arg1)
+//{
+
+//}

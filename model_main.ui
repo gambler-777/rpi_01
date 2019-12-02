@@ -177,7 +177,7 @@ padding:-2 3px;
       </rect>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_3">
+    <widget class="QCheckBox" name="checkBox_auto">
      <property name="geometry">
       <rect>
        <x>20</x>
