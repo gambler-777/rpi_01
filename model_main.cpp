@@ -80,8 +80,35 @@ Model_Main::~Model_Main()
 
 void Model_Main::on_pushu_clicked() //button generating string with shot parameters
 {
-//    ShotParamStringCreate();
+    ShotParamStringCreate();
+}
 
+void Model_Main::on_ShotButton_clicked()
+{
+    system(qPrintable(ShotParams));
+}
+
+void Model_Main::on_checkBox_Preview_stateChanged(int arg1)
+{
+    if (arg1)
+        Preview = "";
+    else Preview = " -n";
+}
+
+void Model_Main::on_pushButton_py_clicked()
+{
+    QDate cd = QDate::currentDate();
+    QTime ct = QTime::currentTime();
+
+    ui->LineDate->setText(cd.toString(Qt::ISODate)+"-"+ct.toString("hh-mm-ss"));
+    CurrentDateTime = cd.toString(Qt::ISODate)+"-"+ct.toString("hh-mm-ss");
+    QString MkdirCom = "mkdir /home/maks/3dphoto/"+CurrentDateTime;
+
+    system(qPrintable(MkdirCom));
+}
+
+void Model_Main::ShotParamStringCreate()
+{
     ImgName = ui->LineFileName->text();
     Path = ui->LinePath->text();
     WBStr = " -awb "+ui->comboBox_WB->currentText();
@@ -117,35 +144,6 @@ void Model_Main::on_pushu_clicked() //button generating string with shot paramet
 
 //    PiCamSSStr = ui->comboBox_SS->currentText();
     ui->textEdit->setText(ShotParams);
-}
-
-void Model_Main::on_ShotButton_clicked()
-{
-    system(qPrintable(ShotParams));
-}
-
-void Model_Main::on_checkBox_Preview_stateChanged(int arg1)
-{
-    if (arg1)
-        Preview = "";
-    else Preview = " -n";
-}
-
-void Model_Main::on_pushButton_py_clicked()
-{
-    QDate cd = QDate::currentDate();
-    QTime ct = QTime::currentTime();
-
-    ui->LineDate->setText(cd.toString(Qt::ISODate)+"-"+ct.toString("hh-mm-ss"));
-    CurrentDateTime = cd.toString(Qt::ISODate)+"-"+ct.toString("hh-mm-ss");
-    QString MkdirCom = "mkdir /home/maks/3dphoto/"+CurrentDateTime;
-
-    system(qPrintable(MkdirCom));
-}
-
-void Model_Main::ShotParamStringCreate()
-{
-
 }
 
 //void Model_Main::on_checkBox_auto_stateChanged(int arg1)
