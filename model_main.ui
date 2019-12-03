@@ -295,19 +295,19 @@ padding:-2 3px;
      <rect>
       <x>220</x>
       <y>150</y>
-      <width>121</width>
+      <width>81</width>
       <height>30</height>
      </rect>
     </property>
     <property name="text">
-     <string>Create date dir</string>
+     <string>Run Serv</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="LineDate">
     <property name="geometry">
      <rect>
       <x>220</x>
-      <y>180</y>
+      <y>185</y>
       <width>171</width>
       <height>21</height>
      </rect>

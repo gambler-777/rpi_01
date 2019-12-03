@@ -85,7 +85,7 @@ void Model_Main::on_pushu_clicked() //button generating string with shot paramet
 
 void Model_Main::on_ShotButton_clicked()
 {
-    system(qPrintable(ShotParams));
+  ShotFileCreate();
 }
 
 void Model_Main::on_checkBox_Preview_stateChanged(int arg1)
@@ -97,14 +97,7 @@ void Model_Main::on_checkBox_Preview_stateChanged(int arg1)
 
 void Model_Main::on_pushButton_py_clicked()
 {
-    QDate cd = QDate::currentDate();
-    QTime ct = QTime::currentTime();
-
-    ui->LineDate->setText(cd.toString(Qt::ISODate)+"-"+ct.toString("hh-mm-ss"));
-    CurrentDateTime = cd.toString(Qt::ISODate)+"-"+ct.toString("hh-mm-ss");
-    QString MkdirCom = "mkdir /home/maks/3dphoto/"+CurrentDateTime;
-
-    system(qPrintable(MkdirCom));
+StartHostServiceGPIO();
 }
 
 void Model_Main::ShotParamStringCreate()
@@ -138,15 +131,29 @@ void Model_Main::ShotParamStringCreate()
 //    ShotParams = "raspistill -o "+Path+ImgName+".jpg"+PiCamDelay+ISOStr+SSStr+DRCStr+RotStr+WBStr+Preview;
 //      ShotParams = "raspistill -o "+Path+ImgName+".jpg"+PiCamDelay+ISOStr+SSStr+DRCStr+RotStr+WBStr+Preview;
       ShotParams = "echo \"raspistill -o "+Path+ImgName+".jpg"+PiCamDelay+ISOStr+\
-              SSStr+DRCStr+RotStr+WBStr+Preview+"\" > /home/maks/file1.txt";
-
-
-
-//    PiCamSSStr = ui->comboBox_SS->currentText();
+              SSStr+DRCStr+RotStr+WBStr+Preview+"\" > /home/maks/3dphoto/file1.txt";
     ui->textEdit->setText(ShotParams);
 }
 
-//void Model_Main::on_checkBox_auto_stateChanged(int arg1)
-//{
+void Model_Main::ShotFileCreate()
+{
+  system(qPrintable(ShotParams));
+}
 
-//}
+void Model_Main::CurrentDateFolderCreate()
+{
+    QDate cd = QDate::currentDate();
+    QTime ct = QTime::currentTime();
+
+    ui->LineDate->setText(cd.toString(Qt::ISODate)+"-"+ct.toString("hh-mm-ss"));
+    CurrentDateTime = cd.toString(Qt::ISODate)+"-"+ct.toString("hh-mm-ss");
+    QString MkdirCom = "mkdir /home/maks/3dphoto/"+CurrentDateTime;
+
+    system(qPrintable(MkdirCom));
+}
+
+void Model_Main::StartHostServiceGPIO()
+{
+    QString Str = "ansible all -m shell -a \"python /home/pi/switch.py\"";
+    system(qPrintable(Str));
+}

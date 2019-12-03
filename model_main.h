@@ -59,7 +59,11 @@ private:
 
     QString ShotParams; //Nabor vseh parametrov sjomki
 
+   void StartHostServiceGPIO();
    void ShotParamStringCreate();
+   void CurrentDateFolderCreate();
+   void ShotFileCreate();
+   void ShotFileSendToHosts();
 
 };
 
