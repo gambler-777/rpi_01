@@ -14,20 +14,20 @@
    <string>TAPARAT</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushu">
+   <widget class="QPushButton" name="CreateFolder">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>212</y>
-      <width>61</width>
+      <x>220</x>
+      <y>190</y>
+      <width>81</width>
       <height>30</height>
      </rect>
     </property>
     <property name="toolTip">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Make shot&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;params String&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Create New Local&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Image Folder&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="text">
-     <string>String</string>
+     <string>Cr. Folder</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
@@ -245,9 +245,9 @@ padding:-2 3px;
    <widget class="QPushButton" name="ShotButton">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>250</y>
-      <width>61</width>
+      <x>320</x>
+      <y>190</y>
+      <width>71</width>
       <height>30</height>
      </rect>
     </property>
@@ -290,24 +290,11 @@ padding:-2 3px;
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_py">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>150</y>
-      <width>81</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Run Serv</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="LineDate">
     <property name="geometry">
      <rect>
       <x>220</x>
-      <y>185</y>
+      <y>160</y>
       <width>171</width>
       <height>21</height>
      </rect>

@@ -20,15 +20,14 @@ public:
 
 
 private slots:
-    void on_pushu_clicked();
 
     void on_ShotButton_clicked();
 
     void on_checkBox_Preview_stateChanged(int arg1);
 
-    void on_pushButton_py_clicked();
+    void on_CreateFolder_clicked();
 
-//    void on_checkBox_auto_stateChanged(int arg1);
+    void on_checkBox_auto_stateChanged(int arg1);
 
 private:
     Ui::Model_Main *ui;
@@ -48,6 +47,8 @@ private:
     QString PiCamDelay;
     int PiCamISO;
 
+    QString ShotFile; // Path and Name of ShotFile, which will be sent to hosts and run there with hard button
+
     QString CurrentDateTime;
 
     QList <double>SSsecList; //Chislo viderzhki kotoroe pod drobju
@@ -59,7 +60,7 @@ private:
 
     QString ShotParams; //Nabor vseh parametrov sjomki
 
-   void StartHostServiceGPIO();
+//   void StartHostServiceGPIO();
    void ShotParamStringCreate();
    void CurrentDateFolderCreate();
    void ShotFileCreate();

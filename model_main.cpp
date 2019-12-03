@@ -7,7 +7,7 @@ Model_Main::Model_Main(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
+    ShotFile = "/home/maks/3dphoto/bt_shot_01.py";
 
     SSsecList.append(800);
 //    SSsecList.append(640);
@@ -78,14 +78,18 @@ Model_Main::~Model_Main()
     delete ui;
 }
 
-void Model_Main::on_pushu_clicked() //button generating string with shot parameters
+void Model_Main::on_CreateFolder_clicked()
 {
-    ShotParamStringCreate();
+    ui->CreateFolder->setEnabled(0);
+    CurrentDateFolderCreate();
 }
 
 void Model_Main::on_ShotButton_clicked()
-{
+{  
+  ShotParamStringCreate();
   ShotFileCreate();
+  ui->CreateFolder->setEnabled(1);
+  ShotFileSendToHosts();
 }
 
 void Model_Main::on_checkBox_Preview_stateChanged(int arg1)
@@ -95,10 +99,19 @@ void Model_Main::on_checkBox_Preview_stateChanged(int arg1)
     else Preview = " -n";
 }
 
-void Model_Main::on_pushButton_py_clicked()
+void Model_Main::on_checkBox_auto_stateChanged(int arg1)
 {
-StartHostServiceGPIO();
+    if(arg1){
+    ui->comboBox_SS->setEnabled(0);
+    ui->comboBox_ISO->setEnabled(0);
+    }
+    else{
+    ui->comboBox_SS->setEnabled(1);
+    ui->comboBox_ISO->setEnabled(1);
+    }
+    return;
 }
+
 
 void Model_Main::ShotParamStringCreate()
 {
@@ -130,13 +143,16 @@ void Model_Main::ShotParamStringCreate()
 
 //    ShotParams = "raspistill -o "+Path+ImgName+".jpg"+PiCamDelay+ISOStr+SSStr+DRCStr+RotStr+WBStr+Preview;
 //      ShotParams = "raspistill -o "+Path+ImgName+".jpg"+PiCamDelay+ISOStr+SSStr+DRCStr+RotStr+WBStr+Preview;
-      ShotParams = "echo \"raspistill -o "+Path+ImgName+".jpg"+PiCamDelay+ISOStr+\
-              SSStr+DRCStr+RotStr+WBStr+Preview+"\" > /home/maks/3dphoto/file1.txt";
+
+      ShotParams = "echo \"os.system('raspistill -o "+Path+ImgName+".jpg"+PiCamDelay+ISOStr+\
+              SSStr+DRCStr+RotStr+WBStr+Preview+"')""\" >> "+ShotFile;
     ui->textEdit->setText(ShotParams);
 }
 
 void Model_Main::ShotFileCreate()
 {
+  QString Str = "echo \"import os\" > "+ShotFile;
+  system(qPrintable(Str));
   system(qPrintable(ShotParams));
 }
 
@@ -152,8 +168,8 @@ void Model_Main::CurrentDateFolderCreate()
     system(qPrintable(MkdirCom));
 }
 
-void Model_Main::StartHostServiceGPIO()
+void Model_Main::ShotFileSendToHosts()
 {
-    QString Str = "ansible all -m shell -a \"python /home/pi/switch.py\"";
+    QString Str = "ansible all -m copy -a \"src=" + ShotFile + " dest=/home/pi\" -b";
     system(qPrintable(Str));
 }
